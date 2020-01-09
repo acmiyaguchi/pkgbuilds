@@ -15,6 +15,9 @@ source=("http://www.kernel.org/pub/linux/kernel/v5.x/${_srcname}.tar.xz"
         "http://www.kernel.org/pub/linux/kernel/v5.x/patch-${pkgver}.xz"
         '0001-kernel-add-epiphany-kconfig.patch'
         '0002-kernel-add-epiphany-makefile.patch'
+        '0003-kernel-add-epiphany-dtbs.patch'
+        'zynq-parallella-headless.dts'
+        'zynq-parallella1.dtsi'
         'epiphany.c'
         'epiphany.h'
         'epiphany_uapi.h'
@@ -27,6 +30,9 @@ sha256sums=('bf338980b1670bca287f9994b7441c2361907635879169c64ae78364efc5f491'
             '5daea86d29246b5a8e193c097756bc833b33dd6fa6419f9cb52bcbf16a192a1b'
             '51a02268729e38a9566f24e7087301030cdb199ca8582f3360d83fda47d51567'
             '0df557a36cce828eb0dec398132fee5f5380aae409ca8b6029d1f110df0c9970'
+            'aef99b8937c380fa8986e583b040d709b3f2435382de4867d6de109b367798f7'
+            '6ca72c84d2fea0889f7aef77da9b10b81fb7569d9d88a9a2409d1cddede471c1'
+            'b73217d6428c60abd24294f7e3d1a513c21a5415b35b8e41a5504736eb531ecf'
             '17f7a780c879e3b1f37eee907111160bb8d228ceefa295f1439c2a9f97b06f36'
             '9e6cd80a98f25ec98582e2cd9352462898eae3c8422b1a65416056e08f37b1f1'
             'efffd95b20a9a2099a9b32c5dbbef21c2e9bc27e70a238d7149d7340dd1d1c38'
@@ -45,11 +51,14 @@ prepare() {
   # add epiphany driver
   patch -p1 < ../0001-kernel-add-epiphany-kconfig.patch
   patch -p1 < ../0002-kernel-add-epiphany-makefile.patch
+  patch -p1 < ../0003-kernel-add-epiphany-dtbs.patch
 
   cat "${srcdir}/config" > ./.config
   cat "${srcdir}/epiphany.c" > ./drivers/misc/epiphany.c
   cat "${srcdir}/epiphany.h" > ./drivers/misc/epiphany.h
   cat "${srcdir}/epiphany_uapi.h" > ./include/uapi/misc/epiphany.h
+  cat "${srcdir}/zynq-parallella1.dtsi" > ./arch/arm/boot/dts/zynq-parallella1.dtsi
+  cat "${srcdir}/zynq-parallella-headless.dts" > ./arch/arm/boot/dts/zynq-parallella-headless.dts
 
   # add pkgrel to extraversion
   sed -ri "s|^(EXTRAVERSION =)(.*)|\1 -${pkgrel}|" Makefile

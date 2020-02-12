@@ -1230,6 +1230,7 @@ out_unlock:
 out:
 	switch (ret) {
 	case 0:
+	case VM_FAULT_NOPAGE:
 	case -ERESTARTSYS:
 	case -EINTR:
 	case -EBUSY:

@@ -1,7 +1,7 @@
 # Maintainer: Mateusz Kaczanowski <kaczanowski.mateusz@gmail.com>
 pkgname='parallella-examples'
 provides=('parallella-examples')
-pkgver=50.fafa295
+pkgver=325.364595c
 pkgrel=1
 pkgdesc="Adapteva parallella board examples"
 arch=('i686' 'x86_64' 'armv7h' 'armv6h' 'aarch64')

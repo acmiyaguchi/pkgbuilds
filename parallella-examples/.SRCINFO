@@ -1,6 +1,6 @@
 pkgbase = parallella-examples
 	pkgdesc = Adapteva parallella board examples
-	pkgver = 50.fafa295
+	pkgver = 325.364595c
 	pkgrel = 1
 	url = https://https://github.com/parallella/parallella-examples
 	arch = i686
